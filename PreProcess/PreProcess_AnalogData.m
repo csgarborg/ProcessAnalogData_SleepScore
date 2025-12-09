@@ -17,7 +17,7 @@ clc; clear all; close all;
 %      Batch_Preprocess_TDMS_AnalogData(true, false);
 %          → Recompute ONLY the spectrograms.
 %
-%      Batch_Preprocess_TDMS_AnalogData(true, true);
+     Batch_Preprocess_TDMS_AnalogData(true, true);
 %          → Fully recompute spectrograms AND force sensor processing
 %            (threshold GUI will pop up again).
 %
@@ -28,7 +28,7 @@ clc; clear all; close all;
 %      • This step must be run before baseline normalization.
 %      • Processed files are saved as: <AnimalID>_<Timestamp>_ProcData.mat
 % ------------------------------------------------------------------------
-Batch_Preprocess_TDMS_AnalogData;
+% Batch_Preprocess_TDMS_AnalogData;
 
 
 %% ------------------------------------------------------------------------

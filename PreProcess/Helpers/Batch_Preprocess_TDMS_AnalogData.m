@@ -10,15 +10,17 @@ function Batch_Preprocess_TDMS_AnalogData(forceSpectrogram, forceForceProcessing
 if nargin < 1, forceSpectrogram = false; end
 if nargin < 2, forceForceProcessing = false; end
 
-allMat = dir('*.mat');
-fileList = {};
-pattern = '^\d{6}_\d{2}_\d{2}_\d{4}\.mat$';
+% allMat = dir('*.mat');
+% fileList = {};
+% pattern = '^\d{6}_\d{2}_\d{2}_\d{4}\.mat$';
 
-for i = 1:numel(allMat)
-    if ~isempty(regexp(allMat(i).name, pattern, 'once'))
-        fileList{end+1} = allMat(i).name; %#ok<AGROW>
-    end
-end
+% for i = 1:numel(allMat)
+%     if ~isempty(regexp(allMat(i).name, pattern, 'once'))
+%         fileList{end+1} = allMat(i).name; %#ok<AGROW>
+%     end
+% end
+
+fileList = findTDMSFiles;
 
 fprintf('Found %d files to process.\n',numel(fileList));
 
@@ -53,8 +55,9 @@ forceLowpassCutoff  = 20;
 forceLowpassOrder   = 2;
 
 % ===== LOAD RAW ANALOG DATA =====
-S = load(srcFile,'tdmsDataStruct');
-td = S.tdmsDataStruct;
+% S = load(srcFile,'tdmsDataStruct');
+% td = S.tdmsDataStruct;
+td = openTDMS(srcFile);
 
 Fs_raw = td.AnalogSamplingRate_Hz_;
 if iscell(Fs_raw), Fs_raw = str2double(Fs_raw{1}); end
